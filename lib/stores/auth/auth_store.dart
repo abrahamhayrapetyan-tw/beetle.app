@@ -170,10 +170,8 @@ abstract class _AuthStore with Store {
   Future<String> signInWithFacebook() async {
     final LoginResult result =
         await FacebookAuth.instance.login(permissions: ['email']);
-
     if (result.status == LoginStatus.success) {
       final userData = await FacebookAuth.instance.getUserData();
-      //TODO
       _userData = userData;
     } else {
       print(result.message);
@@ -184,9 +182,12 @@ abstract class _AuthStore with Store {
   @action
   Future postExtLogin() async {
     loading = true;
+    if (userToken.isNotEmpty) return;
+
     final future =
         _repository.postExtLogin(userToken: userToken, providerId: providerId);
     fetchAuthorizationFuture = ObservableFuture(future);
+
     future.then((authorization) {
       this.authorization = authorization;
       _repository.saveAuthToken(authToken: authorization.accessToken);

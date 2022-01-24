@@ -4,11 +4,12 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'di/components/service_locator.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await setPreferredOrientations();
   await setupLocator();
+
   return runZonedGuarded(() async {
     runApp(MyApp());
   }, (error, stack) {
@@ -16,7 +17,6 @@ Future<void> main() async {
     print(error);
   });
 }
-
 
 Future<void> setPreferredOrientations() {
   return SystemChrome.setPreferredOrientations([
@@ -27,19 +27,3 @@ Future<void> setPreferredOrientations() {
   ]);
 }
 
-
-
-/*class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Wealth IQ',
-      // theme: buildLightTheme(),
-      darkTheme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-      home: const SplashPage(),
-    );
-  }
-}*/

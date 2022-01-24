@@ -336,11 +336,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> signInWithGoogle() async {
-    String userToken = await _authStore.signInWithGoogle();
-    _authStore.userToken = userToken;
-    _authStore.providerId = 2;
-    await _authStore.postExtLogin();
-    navigatorHome();
+    try {
+      String userToken = await _authStore.signInWithGoogle();
+      _authStore.userToken = userToken;
+      _authStore.providerId = 2;
+      await _authStore.postExtLogin();
+      navigatorHome();
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   Widget _buildUserIdField() {

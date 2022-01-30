@@ -127,6 +127,8 @@ class _MapPageState extends State<MapPage> {
         PointLatLng(locationEnd.lat, locationEnd.lng),
         travelMode: TravelMode.driving,
       );
+      print('AAAASSSS    ${result.points} ${result.points.length}');
+      print('AAAASSSS    ${result.points.length}');
       if (result.points.isNotEmpty) {
         for (var point in result.points) {
           polylineCoordinates.add(LatLng(point.latitude, point.longitude));
@@ -167,9 +169,10 @@ class _MapPageState extends State<MapPage> {
     PolylineId id = const PolylineId("poly");
     Polyline polyline = Polyline(
       polylineId: id,
+      consumeTapEvents: true,
       points: polylineCoordinates,
       color: AppColors.pizazz,
-      width: 8,
+      width: 4,
     );
 
     setState(() {

@@ -19,8 +19,7 @@ class AuthApi {
     }
   }
 
-  Future<Authorization> postExtLogin(
-      {int providerId, String userToken}) async {
+  Future<Authorization> postExtLogin({int providerId, String userToken}) async {
     try {
       /* var map = <String, dynamic>{};
       map['ProviderId'] = providerId;
@@ -31,7 +30,10 @@ class AuthApi {
         'UserToken': userToken,
       });
 
+      print(formData);
+
       final res = await _dioClient.post(Endpoints.postExtLogin, data: formData);
+      print(res);
       return Authorization.fromMap(res);
     } catch (e) {
       rethrow;

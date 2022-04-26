@@ -142,6 +142,7 @@ abstract class _AuthStore with Store {
       if (googleUser != null) {
         final GoogleSignInAuthentication googleAuth =
             await googleUser.authentication;
+        print('OOOOPPP  ${googleAuth.idToken}');
         //TODO
         return googleAuth.idToken;
       } else {
@@ -182,11 +183,13 @@ abstract class _AuthStore with Store {
   @action
   Future postExtLogin() async {
     loading = true;
-    if (userToken.isNotEmpty) return;
+    print(userToken);
+    if (userToken.isEmpty) return;
 
     final future =
         _repository.postExtLogin(userToken: userToken, providerId: providerId);
     fetchAuthorizationFuture = ObservableFuture(future);
+    print(future);
 
     future.then((authorization) {
       this.authorization = authorization;

@@ -45,7 +45,6 @@ abstract class _LanguageStore with Store {
   @action
   String getCode() {
     var code;
-
     if (_locale == 'en') {
       code = "US";
     } else if (_locale == 'am') {

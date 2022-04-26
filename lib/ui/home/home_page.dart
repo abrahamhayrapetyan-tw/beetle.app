@@ -410,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.of(context).pop();
+                //  Navigator.of(context).pop();
                   // change user language based on selected locale
                   _languageStore.changeLanguage(object.locale);
                 },
